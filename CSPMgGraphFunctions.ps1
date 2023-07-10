@@ -169,6 +169,6 @@ Function Consent-PartnerApplication {
     CSPConsent4Customer -AccessToken $PartnerAccessToken -CustomerTenantId $customertenantid -CSPApplicationId $global:AppId -CSPApplicationDisplayName $global:AppDisplayName
 }
   
-
-Init-CSPMgGraphModules -ModuleNames "PartnerCenter","Microsoft.Graph","AzureAD"
+[string[]]$ModuleArray = 'PartnerCenter','Microsoft.Graph','AzureAD'
+Init-CSPMgGraphModules($ModuleArray)
 Select-Customer
