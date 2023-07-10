@@ -153,7 +153,7 @@ Function Get-AuthenticationTokens {
             }
             "Customer" {
                 $PartnerAccessToken = New-PartnerAccessToken -serviceprincipal -ApplicationId $global:AppId -Credential $AppCredential -Scopes $global:consentscope -tenant $global:PartnerTenantid -useauthorizationcode
-                $customerToken = New-PartnerAccessToken -ApplicationId $global:AppId -Credential $global:AppCredential  -Scopes 'https://graph.microsoft.com/.default' -ServicePrincipal -Tenant $customertenantid -RefreshToken $PartnerAccessToken.RefreshToken
+                $customerToken = New-PartnerAccessToken -ApplicationId $global:AppId -Credential AppCredential  -Scopes 'https://graph.microsoft.com/.default' -ServicePrincipal -Tenant $customertenantid -RefreshToken $PartnerAccessToken.RefreshToken
                 return $customerToken.AccessToken
 
             }
