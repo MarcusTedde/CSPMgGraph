@@ -19,42 +19,42 @@ Write-Host "Consent Scope:" -ForegroundColor Yellow
 Write-Host $global:consentscope -ForegroundColor DarkGreen
 write-host
 
-function Init-CSPMgGraphModules([string[]]$ModuleNames)
+function Init-CSPMgGraphModules
 {
-	foreach ($Module in $ModuleNames) {
-	Write-Host "Checking that $ModuleName module is installed..." -ForegroundColor Yellow
-	
-	$modInstalled = Get-InstalledModule -Name $ModuleName
-	
-	if (!($modInstalled))
-	{
-		Write-Host "$ModuleName module not installed. Installing now..." -ForegroundColor Yellow
-		Install-Module -Name $ModuleName -Scope CurrentUser -Confirm
-		Write-Host "$ModuleName module installed" -ForegroundColor DarkGreen
+	Process {
+		Write-Host "Checking that $_ module is installed..." -ForegroundColor Yellow
+		
+		$modInstalled = Get-InstalledModule -Name $_
+		
+		if (!($modInstalled))
+		{
+			Write-Host "$_ module not installed. Installing now..." -ForegroundColor Yellow
+			Install-Module -Name $_ -Scope CurrentUser -Confirm
+			Write-Host "$_ module installed" -ForegroundColor DarkGreen
+			Write-Host
+		}
+		
+		Write-Host "Importing $_ module now..." -ForegroundColor Yellow
 		Write-Host
-	}
-	
-	Write-Host "Importing $ModuleName module now..." -ForegroundColor Yellow
-	Write-Host
-	#Importing Modules
-	
-	if (Get-Module -Name $ModuleName)
-	{
-		Write-Host "$ModuleName module is already imported!" -ForegroundColor DarkGreen
-	}
-	else
-	{
-		Try
+		#Importing Modules
+		
+		if (Get-Module -Name $_)
 		{
-			Import-Module $ModuleName -ErrorAction Stop
+			Write-Host "$_ module is already imported!" -ForegroundColor DarkGreen
 		}
-		Catch
+		else
 		{
-			$message = $_
-			Write-Warning "$ModuleName could not be imported: $message"
+			Try
+			{
+				Import-Module $_ -ErrorAction Stop
+			}
+			Catch
+			{
+				$message = $_
+				Write-Warning "$_ could not be imported: $message"
+			}
 		}
 	}
-}
 }
 Function CSPConsent4Customer
 {
@@ -169,6 +169,6 @@ Function Consent-PartnerApplication {
     CSPConsent4Customer -AccessToken $PartnerAccessToken -CustomerTenantId $customertenantid -CSPApplicationId $global:AppId -CSPApplicationDisplayName $global:AppDisplayName
 }
   
-[string[]]$ModuleArray = 'PartnerCenter','Microsoft.Graph','AzureAD'
-Init-CSPMgGraphModules($ModuleArray)
+$ModulesArray = @('PartnerCenter', 'AzureAD', 'Microsoft.Graph', 'Microsoft.Graph.Intune')
+$ModulesArray | Init-CSPMgGraphModules
 Select-Customer
