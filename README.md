@@ -8,3 +8,7 @@ Once you’ve created the CSP App, you will need to set the global variables on 
 The script includes the function for consenting the application for your customers per customer. To consent for all customers then perform something similar to the following after loading the functions and global variables in to your PowerShell session:
 
 Get-MgContract -All | foreach {consent-PartnerApplication -CustomerTenantId $_.CustomerId}
+
+# Important Notes
+
+*sometimes you'll get an error regarding MFA. to combat this, first log in to your CSP portal.azure.com, login using your MFA. This will clear the error.*
