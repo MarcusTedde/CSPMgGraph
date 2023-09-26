@@ -9,11 +9,11 @@ $global:consentscope = 'https://api.partnercenter.microsoft.com/user_impersonati
 $global:AppDisplayName = 'MgGraphMultiTenant'
 
 Write-Host "The following global variables have been set:"
-Write-Host "Clarity MgGraph Enterprise App ID:" -ForegroundColor Yellow
+Write-Host "CSP MgGraph Enterprise App ID:" -ForegroundColor Yellow
 Write-Host $global:AppId -ForegroundColor DarkGreen
-Write-Host "Clarity MgGraph Enterprise App Secret:" -ForegroundColor Yellow
+Write-Host "CSP MgGraph Enterprise App Secret:" -ForegroundColor Yellow
 Write-Host $global:AppSecret -ForegroundColor DarkGreen
-Write-Host "Clarity Partner Tenant ID:" -ForegroundColor Yellow
+Write-Host "CSP Partner Tenant ID:" -ForegroundColor Yellow
 Write-Host $global:PartnerTenantid -ForegroundColor DarkGreen
 Write-Host "Consent Scope:" -ForegroundColor Yellow
 Write-Host $global:consentscope -ForegroundColor DarkGreen
