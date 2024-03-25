@@ -12,3 +12,9 @@ Get-MgContract -All | foreach {consent-PartnerApplication -CustomerTenantId $_.C
 # Important Notes
 
 *sometimes you'll get an error regarding MFA. to combat this, first log in to your CSP portal.azure.com, login using your MFA. This will clear the error.*
+
+# Donations
+
+please feel free to buy me a coffee if you feel that my scripts help make your life easier. more coffee means more scripts to help you and your business out!
+
+https://www.buymeacoffee.com/marcustedde
